@@ -2,8 +2,10 @@ version: '3.8'
 
 services:
   astro-blog:
-    build: .
-    container_name: astro-blog
+    build:
+      context: ..        # 仍然指向项目根目录
+      dockerfile: ./Dockerfile  # 但 Dockerfile 在当前目录
+    container_name: ${CONTAINER_NAME:-astro-blog}
     restart: always
     ports:
-      - "80:80"
+      - "${PORT:-80}:80"
